@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BallRandom : MonoBehaviour
@@ -12,12 +13,13 @@ public class BallRandom : MonoBehaviour
     // プレイヤーの状態(p200記載）（ゲームが実行中の時、終わった時）
     enum State
     {
+        WaitStart,
         Running,
         GameEnd,
     }
 
     // プレイヤーの状態の初期をランニングにします（ランニングはゲームが実行中の状態）
-    State playerState = State.Running;
+    State playerState = State.WaitStart;
 
     void Start()
     {
@@ -27,6 +29,8 @@ public class BallRandom : MonoBehaviour
         balls[startrandom].GetComponent<MeshRenderer>().material.color = Color.red;
 
         this.director = GameObject.Find("GameDirector");
+
+
     }
 
 
@@ -37,6 +41,11 @@ public class BallRandom : MonoBehaviour
     {
         //　もし、ゲームが終了ならば、Update()メソッドは実行されない
         if (playerState == State.GameEnd)
+        {
+            return;
+        }
+
+        if (playerState==State.WaitStart)
         {
             return;
         }
@@ -61,13 +70,16 @@ public class BallRandom : MonoBehaviour
             }
         }
     }
-
+    // カウントダウンが終わった時に呼び出されるイベント
+    public void GameStart()
+    {
+        playerState = State.Running;
+}
     // ゲーム終了時の呼び出されるイベントパンドラ
     public void GameEnd()
     {
         playerState = State.GameEnd;
     }
+
+   
 }
-
-
-
