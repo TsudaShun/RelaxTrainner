@@ -30,7 +30,6 @@ public class BallRandom : MonoBehaviour
 
         this.director = GameObject.Find("GameDirector");
 
-
     }
 
 
@@ -45,7 +44,7 @@ public class BallRandom : MonoBehaviour
             return;
         }
 
-        if (playerState==State.WaitStart)
+        if (playerState == State.WaitStart)
         {
             return;
         }
@@ -74,12 +73,12 @@ public class BallRandom : MonoBehaviour
     public void GameStart()
     {
         playerState = State.Running;
-}
+    }
     // ゲーム終了時の呼び出されるイベントパンドラ
     public void GameEnd()
     {
         playerState = State.GameEnd;
     }
 
-   
+
 }

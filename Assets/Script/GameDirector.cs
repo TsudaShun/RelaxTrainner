@@ -39,7 +39,7 @@ public class GameDirector : MonoBehaviour
         this.timerText = GameObject.Find("Timer");
         this.pointText = GameObject.Find("Point");
 
-        //39行目〜52行目までのコードは、39行目実行後、
+        //42行目〜54行目までのコードは、42行目実行後、
         StartCoroutine(WaitStart());
     }
 

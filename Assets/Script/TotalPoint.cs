@@ -13,6 +13,7 @@ public class TotalPoint : MonoBehaviour
     void Start()
     {
         point = GameDirector.Getpoint();
+        point = Game2Director.Getpoint();
         PointText.text = "得点：" + point.ToString() + "Point";
     }
 
