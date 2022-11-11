@@ -9,9 +9,9 @@ public class CheckGame : MonoBehaviour
     {
         Game2Director.gameCount++;
 
-        if (Game2Director.gameCount == 3)
+        if (Game2Director.gameCount == Game2Director.problem)
         {
-            SceneManager.LoadScene("GameEndScene");
+            SceneManager.LoadScene("Game2EndScene");
         }
         else
         {

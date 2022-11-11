@@ -1,12 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameDirector : MonoBehaviour
 {
@@ -21,7 +17,7 @@ public class GameDirector : MonoBehaviour
 
     GameObject timerText;
     GameObject pointText;
-    float timer = 15.0f;
+    public static float timer;
     public Text CountDown;
    // float CountText = 4f;
     int count = 3;
@@ -38,8 +34,6 @@ public class GameDirector : MonoBehaviour
         point = 0;
         this.timerText = GameObject.Find("Timer");
         this.pointText = GameObject.Find("Point");
-
-        //42行目〜54行目までのコードは、42行目実行後、
         StartCoroutine(WaitStart());
     }
 
@@ -62,23 +56,12 @@ public class GameDirector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //自分が書いたコードだと何回も呼び出される
-        /*
-        if (CountText >= 0)
-        {
-            CountText -= Time.deltaTime;
-            count = (int)CountText;
-            CountDown.text = count.ToString();
-            return;
-        }
-        */
-
         if (count <= 0)
         {
             CountDown.text = "";
 
-            this.timer -= Time.deltaTime;
-            this.timerText.GetComponent<Text>().text = this.timer.ToString("F1") + "秒前";
+            timer -= Time.deltaTime;
+            this.timerText.GetComponent<Text>().text = timer.ToString("F1") + "秒前";
 
             this.pointText.GetComponent<Text>().text = point.ToString() + "point";
             gameStart.Invoke();
@@ -87,7 +70,7 @@ public class GameDirector : MonoBehaviour
         // タイマーが０になるとゲーム終了
         if (timer <= 0)
         {
-            this.timerText.GetComponent<Text>().text = "トレーニング終了！";
+            this.timerText.GetComponent<Text>().text = "終了！";
 
             // ゲーム終了なのでイベントを呼び出す
             gameEnd.Invoke();

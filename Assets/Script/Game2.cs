@@ -25,16 +25,6 @@ public class Game2 : MonoBehaviour
 
     }
 
-
-    /*public void GetInputName()
-    {
-        string InputField = inputField.text;
-        Debug.Log(InputField);
-
-        inputField.text = "";
-    }*/
-
-        // Update is called once per frame
         void Update()
     {
         if (playerState == State.GameEnd)
@@ -51,9 +41,6 @@ public class Game2 : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-           /* if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-            }*/
         }
     }
 

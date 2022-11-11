@@ -1,20 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Game2Director : MonoBehaviour
 {
+    GameObject pointText;
+
     public UnityEvent gameStart;
     public UnityEvent gameEnd;
     public static int point = 0;
     // 何回目か？
     // staticはシーンが切り替わっても使える
     public static int gameCount;
+
+    public static int problem;
 
     public Text CountDown;
     public Text Math;
@@ -23,12 +24,19 @@ public class Game2Director : MonoBehaviour
     int count = 3;
     public static int SumRandom;
 
+    // ランダム数値の桁数
+    public static int Sum;
+
+    // ランダム数値を何秒表示させるか
+    public static int Timer;
+
     void Start()
     {
         AnswerButton.interactable = false;
-        point = 0;
-        SumRandom = Random.Range(0, 1000000);
+        
+        SumRandom = Random.Range(0, Sum);
         StartCoroutine(WaitStart());
+        this.pointText = GameObject.Find("Point");
     }
 
     private IEnumerator WaitStart()
@@ -40,13 +48,10 @@ public class Game2Director : MonoBehaviour
         }
         CountDown.enabled = false;
         gameStart.Invoke();
-        Invoke("ClearMath", 1);
+        Invoke("ClearMath",Timer);
     }
 
-    public static int Getpoint()
-    {
-        return point;
-    }
+   
 
     public void ShowMath()
     {
@@ -61,13 +66,18 @@ public class Game2Director : MonoBehaviour
 
         if (Math.text == Enter.text)
         {
-            point += 1;
             SceneManager.LoadScene("GameTrueScene");
+            point += 1;
         }
         else
         {
             SceneManager.LoadScene("GameFalseScene");
         }
+    }
+
+    public static int Getpoint()
+    {
+        return point;
     }
 
 
