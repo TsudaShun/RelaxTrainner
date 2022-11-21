@@ -19,7 +19,10 @@ public class Game3Director : MonoBehaviour
 
     GameObject timerText;
     GameObject pointText;
+
     public static float timer;
+    public static float baseTimer = 15;
+
     public Text CountDown;
     // float CountText = 4f;
     int count = 3;
@@ -33,6 +36,8 @@ public class Game3Director : MonoBehaviour
     void Start()
     {
         point = 0;
+        timer = baseTimer;
+
         this.timerText = GameObject.Find("Timer");
         this.pointText = GameObject.Find("Point");
 

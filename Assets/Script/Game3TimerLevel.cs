@@ -14,24 +14,24 @@ public class Game3TimerLevel : MonoBehaviour
         if (TimerDropdown.value == 0)
         {
             Debug.Log("Timer:15秒");
-            Game3Director.timer = 15;
+            Game3Director.baseTimer = 15;
         }
         else if (TimerDropdown.value == 1)
         {
             Debug.Log("Timer:30秒");
-            Game3Director.timer = 30;
+            Game3Director.baseTimer = 30;
 
         }
         else if (TimerDropdown.value == 2)
         {
             Debug.Log("Timer:45秒");
-            Game3Director.timer = 45;
+            Game3Director.baseTimer = 45;
 
         }
         else if (TimerDropdown.value == 3)
         {
             Debug.Log("Timer:60秒");
-            Game3Director.timer = 60;
+            Game3Director.baseTimer = 60;
         }
     }
 }
